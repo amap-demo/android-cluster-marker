@@ -9,9 +9,10 @@
 - 将marker处理线程和聚合算法线程进行分离，提高效率。
 - 聚合过程中减少不必要的运算，提高聚合显示速度。
 - 适配新版SDK应用场景，对用到的图标，统一管理，减少内存使用和提高效率，
-- 加入了动画效果，聚合切换过程更为平滑
+- 加入了动画效果，聚合切换过程更为平滑 
 
 ## 效果图如下 ##
+
 ![Screenshot](https://raw.githubusercontent.com/amap-demo/android-cluster-marker/master/resource/Screenshot.png)  
 
 ## 扫一扫安装##
@@ -22,7 +23,9 @@
 ###1:配置搭建AndroidSDK工程###
 - [Android Studio工程搭建方法](http://lbs.amap.com/api/android-sdk/guide/creat-project/android-studio-creat-project/#add-jars).
 - [通过maven库引入SDK方法](http://lbsbbs.amap.com/forum.php?mod=viewthread&tid=18786).
+
 ###2:接口使用###
+
 - 初始化聚合和加入元素
 1:批量初始化，适合一次大量加入
 ``` java
