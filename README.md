@@ -12,10 +12,10 @@
 -加入了动画效果，聚合切换过程更为平滑
 
 ## 效果图如下 ##
-![Screenshot]( https://raw.githubusercontent.com/amapapi/Android_ClusterMarker/master/Resources/%E4%BA%8C%E7%BB%B4%E7%A0%81.png)  
+![Screenshot](https://raw.githubusercontent.com/amap-demo/android-cluster-marker/master/resource/Screenshot.png)  
 
 ## 扫一扫安装##
-![Screenshot]( https://raw.githubusercontent.com/amapapi/Android_ClusterMarker/master/Resources/%E4%BA%8C%E7%BB%B4%E7%A0%81.png)  
+![Screenshot]( https://raw.githubusercontent.com/amap-demo/android-cluster-marker/master/resource/download.png)  
 
 
 ## 使用方法##
