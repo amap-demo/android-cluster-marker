@@ -57,8 +57,8 @@ mClusterOverlay.addClusterItem(regionItem);
 ```
 - 设置渲染render和聚合点点击事件监听
 ``` java
-    mClusterOverlay.setClusterRenderer(MainActivity.this);
-    mClusterOverlay.setOnClusterClickListener(MainActivity.this);
+mClusterOverlay.setClusterRenderer(MainActivity.this);
+mClusterOverlay.setOnClusterClickListener(MainActivity.this);
 ```
 - 自定义渲染
 ``` java
