@@ -1,6 +1,6 @@
 本工程为基于高德地图Android SDK进行封装，实现了Marker聚合效果的例子
 ## 前述 ##
-- [高德官网申请key](http://lbs.amap.com/dev/#/).
+- [高德官网申请Key](http://lbs.amap.com/dev/#/).
 - 阅读[参考手册](http://a.amap.com/lbs/static/unzip/Android_Map_Doc/index.html).
 - 工程基于Android 3D地图SDK实现
 
@@ -27,26 +27,24 @@
 ###2:接口使用###
 
 - 初始化聚合和加入元素
+
 1:批量初始化，适合一次大量加入
 ``` java
      
-      List<ClusterItem> items = new ArrayList<ClusterItem>();
+     List<ClusterItem> items = new ArrayList<ClusterItem>();
+     //随机10000个点
+     for (int i = 0; i < 10000; i++) {
+         double lat = Math.random() + 39.474923;
+         double lon = Math.random() + 116.027116;
+         LatLng latLng = new LatLng(lat, lon, false);
+         RegionItem regionItem = new RegionItem(latLng,
+                 "test" + i);
+         items.add(regionItem);
 
-       //随机10000个点
-       for (int i = 0; i < 10000; i++) {
-
-           double lat = Math.random() + 39.474923;
-           double lon = Math.random() + 116.027116;
-
-           LatLng latLng = new LatLng(lat, lon, false);
-           RegionItem regionItem = new RegionItem(latLng,
-                   "test" + i);
-           items.add(regionItem);
-
-       }
-       mClusterOverlay = new ClusterOverlay(mAMap, items,
-               dp2px(getApplicationContext(), clusterRadius),
-                     getApplicationContext());
+     }
+     mClusterOverlay = new ClusterOverlay(mAMap, items,
+             dp2px(getApplicationContext(), clusterRadius),
+                   getApplicationContext());
 ```
 2:初始化之后，有新的聚合点加入
 ``` java
@@ -61,52 +59,52 @@
 ```
 - 设置渲染render和聚合点点击事件监听
 ``` java
-      mClusterOverlay.setClusterRenderer(MainActivity.this);
-      mClusterOverlay.setOnClusterClickListener(MainActivity.this);
+     mClusterOverlay.setClusterRenderer(MainActivity.this);
+     mClusterOverlay.setOnClusterClickListener(MainActivity.this);
 ```
 - 自定义渲染
 ``` java
-          public Drawable getDrawAble(int clusterNum) {
-        int radius = dp2px(getApplicationContext(), 80);
-        if (clusterNum == 1) {
-            Drawable bitmapDrawable = mBackDrawAbles.get(1);
-            if (bitmapDrawable == null) {
-                bitmapDrawable =
-                        getApplication().getResources().getDrawable(
-                        R.drawable.icon_openmap_mark);
-                mBackDrawAbles.put(1, bitmapDrawable);
-            }
+     public Drawable getDrawAble(int clusterNum) {
+     int radius = dp2px(getApplicationContext(), 80);
+     if (clusterNum == 1) {
+         Drawable bitmapDrawable = mBackDrawAbles.get(1);
+         if (bitmapDrawable == null) {
+             bitmapDrawable =
+                     getApplication().getResources().getDrawable(
+                     R.drawable.icon_openmap_mark);
+             mBackDrawAbles.put(1, bitmapDrawable);
+         }
 
-            return bitmapDrawable;
-        } else if (clusterNum < 5) {
+         return bitmapDrawable;
+     } else if (clusterNum < 5) {
 
-            Drawable bitmapDrawable = mBackDrawAbles.get(2);
-            if (bitmapDrawable == null) {
-                bitmapDrawable = new BitmapDrawable(null, drawCircle(radius,
-                        Color.argb(159, 210, 154, 6)));
-                mBackDrawAbles.put(2, bitmapDrawable);
-            }
+         Drawable bitmapDrawable = mBackDrawAbles.get(2);
+         if (bitmapDrawable == null) {
+             bitmapDrawable = new BitmapDrawable(null, drawCircle(radius,
+                     Color.argb(159, 210, 154, 6)));
+             mBackDrawAbles.put(2, bitmapDrawable);
+         }
 
-            return bitmapDrawable;
-        } else if (clusterNum < 10) {
-            Drawable bitmapDrawable = mBackDrawAbles.get(3);
-            if (bitmapDrawable == null) {
-                bitmapDrawable = new BitmapDrawable(null, drawCircle(radius,
-                        Color.argb(199, 217, 114, 0)));
-                mBackDrawAbles.put(3, bitmapDrawable);
-            }
+         return bitmapDrawable;
+     } else if (clusterNum < 10) {
+         Drawable bitmapDrawable = mBackDrawAbles.get(3);
+         if (bitmapDrawable == null) {
+             bitmapDrawable = new BitmapDrawable(null, drawCircle(radius,
+                     Color.argb(199, 217, 114, 0)));
+             mBackDrawAbles.put(3, bitmapDrawable);
+         }
 
-            return bitmapDrawable;
-        } else {
-            Drawable bitmapDrawable = mBackDrawAbles.get(4);
-            if (bitmapDrawable == null) {
-                bitmapDrawable = new BitmapDrawable(null, drawCircle(radius,
-                        Color.argb(235, 215, 66, 2)));
-                mBackDrawAbles.put(4, bitmapDrawable);
-            }
+         return bitmapDrawable;
+     } else {
+         Drawable bitmapDrawable = mBackDrawAbles.get(4);
+         if (bitmapDrawable == null) {
+             bitmapDrawable = new BitmapDrawable(null, drawCircle(radius,
+                     Color.argb(235, 215, 66, 2)));
+             mBackDrawAbles.put(4, bitmapDrawable);
+         }
 
-            return bitmapDrawable;
-        }
+         return bitmapDrawable;
+     }
     }
 ```
 - 聚合点击事件
