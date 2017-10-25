@@ -309,7 +309,7 @@ public class ClusterOverlay implements AMap.OnCameraChangeListener,
         for (Cluster cluster : clusters) {
             LatLng clusterCenterPoint = cluster.getCenterLatLng();
             double distance = AMapUtils.calculateLineDistance(latLng, clusterCenterPoint);
-            if (distance < mClusterDistance) {
+            if (distance < mClusterDistance && mAMap.getCameraPosition().zoom < 19) {
                 return cluster;
             }
         }
