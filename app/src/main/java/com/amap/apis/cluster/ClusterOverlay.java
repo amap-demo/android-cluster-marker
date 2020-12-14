@@ -1,7 +1,9 @@
 package com.amap.apis.cluster;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
@@ -74,10 +76,10 @@ public class ClusterOverlay implements AMap.OnCameraChangeListener,
      */
     public ClusterOverlay(AMap amap, List<ClusterItem> clusterItems,
                           int clusterSize, Context context) {
-//默认最多会缓存80张图片作为聚合显示元素图片,根据自己显示需求和app使用内存情况,可以修改数量
+        //默认最多会缓存80张图片作为聚合显示元素图片,根据自己显示需求和app使用内存情况,可以修改数量
         mLruCache = new LruCache<Integer, BitmapDescriptor>(80) {
             protected void entryRemoved(boolean evicted, Integer key, BitmapDescriptor oldValue, BitmapDescriptor newValue) {
-                oldValue.getBitmap().recycle();
+                reycleBitmap(oldValue.getBitmap());
             }
         };
         if (clusterItems != null) {
@@ -95,6 +97,18 @@ public class ClusterOverlay implements AMap.OnCameraChangeListener,
         amap.setOnMarkerClickListener(this);
         initThreadHandler();
         assignClusters();
+    }
+
+    private void reycleBitmap(Bitmap bitmap) {
+        if (bitmap == null) {
+            return;
+        }
+        //高版本不调用recycle
+        if (Build.VERSION.SDK_INT <= 10) {
+            if (!bitmap.isRecycled()) {
+                bitmap.recycle();
+            }
+        }
     }
 
     /**
